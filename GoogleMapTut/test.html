@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index - My ASP.NET Application</title>
+
+
+    <style type="text/css">
+        html, body, #map-canvas  {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+
+
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIpPyiWV_dzWdD2vK3yPdL5D75mO61zHU"> </script>
+
+    <script type="text/javascript">
+        function initialize() {
+            var mapOptions = {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            };
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                mapOptions);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+</head>
+<body>
+    <div class="container body-content">
+
+
+
+
+
+        <h2>Index</h2>
+        <div id="para">Hello. </div>
+
+
+        <div id="map-canvas"></div>
+
+
+        <br>
+
+    </div>
+
+    <script type="text/javascript">
+
+        document.getElementById("para").innerHTML += "script in body. ";
+    </script>
+
+
+</body>
+</html>

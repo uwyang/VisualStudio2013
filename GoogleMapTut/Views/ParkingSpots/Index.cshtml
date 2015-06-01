@@ -1,0 +1,44 @@
+﻿@model IEnumerable<GoogleMapTut.Models.ParkingSpot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section JavaScriptHeader
+{
+    <style type="text/css">
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    
+    <!--
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIpPyiWV_dzWdD2vK3yPdL5D75mO61zHU"> </script>
+    
+    -->
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/markertest.js")"></script>
+
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+    <div class="col-sm-6">
+        <p>map goes here. </p>
+        <div id="yangdebug">debug information</div>
+        <div id="map-canvas"></div>
+    </div>
+    <div class="col-sm-6">
+@{
+    ViewBag.ListDescription = "Skills:";
+    Html.RenderPartial("~/Views/parts/_MapParkingDetails.cshtml", Model);
+}
+
+    </div>
+</div>
+

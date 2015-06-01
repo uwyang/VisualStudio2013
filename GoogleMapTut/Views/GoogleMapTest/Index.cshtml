@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section JavaScriptHeader
+{
+<style type="text/css">
+     #map-canvas {
+        height: 400px;
+        width: 600px;
+    }
+</style>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/maptest/mapsearchtest.js")"></script>
+
+}
+
+@section JavaScriptFooter
+{
+<script type="text/javascript">
+
+    document.getElementById("para").innerHTML += "script in body. ";
+</script>
+}
+
+<h2>Index</h2>
+<div id="para">Hello. </div>
+
+
+    <table class="table table-hover">
+        <tr id="parking3">
+            <td>icon</td>
+            <td>name</td>
+            <td>address</td>
+            <td>description</td>
+        </tr>
+        <tr class="danger">
+            <td>
+                icon
+            </td>
+            <td>name</td>
+            <td>address</td>
+            <td>description</td>
+        </tr>
+    </table>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+    <div id="map-canvas"></div>
+
+
