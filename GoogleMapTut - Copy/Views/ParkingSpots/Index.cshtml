@@ -1,0 +1,76 @@
+﻿@model IEnumerable<GoogleMapTut.Models.ParkingSpot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section JavaScriptHeader
+{
+    <style type="text/css">
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+    <!--
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIpPyiWV_dzWdD2vK3yPdL5D75mO61zHU"> </script>
+
+    -->
+    <link rel="stylesheet" type="text/css" href="~/Content/googlemap.css">
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/mapsearchtest.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/loadmarkers.js")"></script>
+
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+    <div class="col-sm-7">
+        <p>map goes here. </p>
+        <div id="yangdebug">debug information</div>
+
+        @using (Html.BeginForm("Index", "ParkingSpots", FormMethod.Get, new { id = "Search", style = "display: block; width: 100%", onsubmit = "updatehiddenlatlng();" }))
+        {
+            <input type="hidden" name="lat" id="lat" value="@ViewBag.lastLat" />
+            <input type="hidden" name="lng" id="lng" value="@ViewBag.lastLng" />
+            <button type="submit" class="btn btn-info btn-sm" 
+                    style="display: block; width: 100%;" onclick="document.getElementById('Search').submit();">
+        <big>Search for Spots!</big></button>
+
+        }
+        @*
+            @Html.ActionLink("Create A New Invoice", "Index", "ParkingSpots", null,
+            new { @class = "btn btn-primary btn-sm", @style="display: block; width: 100%;",
+                @id = "testhelper", @onclick = "searchparking()" })
+
+
+            <script type="text/javascript">
+                function searchparking() {
+                    var link = document.getElementById("testhelper");
+                    var basehref = link.getAttribute("href");
+                    link.setAttribute("href", basehref + "?lat=43.464460&lng=-80.522552");
+                    console.log(link.getAttribute("href"));
+
+                    return confirm('Are you sure?');
+                };
+            </script>
+        *@
+
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+
+        <div id="map-canvas"></div>
+    </div>
+    <div class="col-sm-5">
+        @{
+            ViewBag.ListDescription = "ClosestParkingSpot:";
+            Html.RenderPartial("~/Views/parts/_MapParkingDetails.cshtml", Model);
+        }
+
+    </div>
+</div>

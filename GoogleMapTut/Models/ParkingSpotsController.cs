@@ -13,17 +13,53 @@ namespace GoogleMapTut.Models
     {
         private ParkingDbContext db = new ParkingDbContext();
 
+        public ActionResult getData()
+        {
+            return View();
+        }
+
+        public ActionResult TestPartialReload(int id = 0, double lat = 43.45, double lng = -80.492)
+        {
+            return View();
+        }
+
+
         // GET: ParkingSpots
-        public ActionResult Index(double lat = 43.45, double lng = -80.492)
+        public ActionResult Index(int id=0, double lat = 43.45, double lng = -80.492)
         {
             var parkingspots = from s in db.ParkingSpots select s;
 
             parkingspots = parkingspots.OrderBy(x => Math.Pow(x.lat - lat, 2) + Math.Pow(x.lng-lng, 2)).Take(3);
 
+            ViewBag.lastLat = lat;
+            ViewBag.lastLng = lng;
+
             return View(parkingspots.ToList());
+            //return View();
         }
 
-        //foreach (ShipCompartment enemyComp in enemy.ListOfCompartments.OrderBy(c => Vector2.Distance(playerComp.Position, c.Position)))
+        // partial view, only the search result. 
+        public ActionResult GetSearchResult(int id=0, double lat = 43.455, double lng = -80.4925)
+        {
+            var parkingspots = from s in db.ParkingSpots select s;
+
+            parkingspots = parkingspots.OrderBy(x => Math.Pow(x.lat - lat, 2) + Math.Pow(x.lng-lng, 2)).Take(3);
+
+            ViewBag.lastLat = lat;
+            ViewBag.lastLng = lng;
+
+            ViewBag.msg = "called: Getsearchresult at: " + DateTime.Now;
+
+            return PartialView("_SearchResult", parkingspots.ToList());
+        }
+
+
+        public double GetRandomNumber(double minimum, double maximum)
+        {
+            Random random = new Random();
+            return random.NextDouble() * (maximum - minimum) + minimum;
+        }
+
 
         // GET: ParkingSpots/Details/5
         public ActionResult Details(int? id)

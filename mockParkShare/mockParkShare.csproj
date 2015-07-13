@@ -1,0 +1,590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C36024B4-75E8-4386-A32B-66491DD0B105}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mockParkShare</RootNamespace>
+    <AssemblyName>mockParkShare</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="DefaultConnection-Deployment" Order="1">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDb%29\v11.0%3bAttachDbFilename=|DataDirectory|\aspnet-mockParkShare-20150619042829.mdf%3bInitial Catalog=aspnet-mockParkShare-20150619042829%3bIntegrated Security=True" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\DefaultConnection-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="ParkingDbContext-Deployment" Order="2">
+          <Destination Path="" />
+          <Object Type="DbFullSql">
+            <PreSource Path="Data Source=%28LocalDB%29\v11.0%3bAttachDbFilename=|DataDirectory|\Parkings.mdf%3bIntegrated Security=True" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\ParkingDbContext-Deployment_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParkingSpotsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506221802517_initial.cs" />
+    <Compile Include="Migrations\201506221802517_initial.Designer.cs">
+      <DependentUpon>201506221802517_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ParkingDbContext.cs" />
+    <Compile Include="Models\ParkingSpot.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Parkings.mdf" />
+    <Content Include="App_Data\Parkings_log.ldf">
+      <DependentUpon>Parkings.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\googlemap.css" />
+    <Content Include="Content\images\greenspinner.gif" />
+    <Content Include="Content\images\loading.GIF" />
+    <Content Include="Content\images\mapmarkers\arrow.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\blue_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\brown_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\darkgreen_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\green_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\orange_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\paleblue_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\pink_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\purple_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\red_MarkerZ.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerA.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerB.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerC.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerD.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerE.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerF.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerG.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerH.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerI.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerJ.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerK.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerL.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerM.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerN.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerO.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerP.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerQ.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerR.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerS.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerT.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerU.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerV.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerW.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerX.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerY.png" />
+    <Content Include="Content\images\mapmarkers\yellow_MarkerZ.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\images\mapmarkers\markers.psd" />
+    <None Include="Properties\PublishProfiles\mockParkShare.pubxml" />
+    <None Include="Properties\PublishProfiles\ParkShare.pubxml" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\maptest\loadmarkers.js" />
+    <Content Include="Scripts\maptest\mapsearchtest.js" />
+    <Content Include="Scripts\maptest\markerobj.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ParkingSpots\Create.cshtml" />
+    <Content Include="Views\ParkingSpots\Delete.cshtml" />
+    <Content Include="Views\ParkingSpots\Details.cshtml" />
+    <Content Include="Views\ParkingSpots\Edit.cshtml" />
+    <Content Include="Views\ParkingSpots\Index.cshtml" />
+    <Content Include="Views\ParkingSpots\_SearchResult.cshtml" />
+    <Content Include="Views\ParkingSpots\ListParking.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\images\mapimages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201506221802517_initial.resx">
+      <DependentUpon>201506221802517_initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61611</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61611/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

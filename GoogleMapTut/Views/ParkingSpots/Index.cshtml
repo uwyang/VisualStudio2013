@@ -12,33 +12,198 @@
             width: 100%;
         }
     </style>
-    
+
     <!--
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIpPyiWV_dzWdD2vK3yPdL5D75mO61zHU"> </script>
-    
+
     -->
-    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/markertest.js")"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/googlemap.css">
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/mapsearchtest.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/loadmarkers.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script>
+        var supportGeolocation = true;
+        var userlat;
+        var userlng;
+        var useuserpos = false;
+        var userposfound = false;
+        var isfirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
+        function getLocation( callback ) {
+            console.log("called: getlocation");
+            if (navigator.geolocation) {
+                console.log("geolocatoin true");
+                //sucess, error, options
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    setUserLocation(position);
+                    if (callback && typeof (callback) === "function") {
+                        console.log("callback starts here");
+                        callback();
+                    } else {
+                        console.log("no callback");
+                    }
+                }, errorGeolocation);
+                
+                
+            } else {
+                errorGeolocation;
+                //show that your browser does not suppor this. 
+            }
+
+            console.log("done geolocation");
+
+        }
+
+        function errorGeolocation(e) {
+            userposfound = false;
+            supportGeolocation = false;
+            console.log("probably use didn't allow geolocation");
+            $('#getUserLocation').addClass("disabled");
+            $("#loadFromMainFrame").removeClass("disabled");
+            $('#noGeolocation').modal('show');
+        }
+
+        function setUserLocation(position) {
+            userposfound = true;
+            userlat = position.coords.latitude;
+            userlng = position.coords.longitude;
+            console.log("user location: ");
+            console.log(userlat + "," + userlng);
+        }
+
+        function loadSearchResult(searchstr) {
+            console.log("partial load begins. ");
+
+            $('#partialParkingDetails').load("/ParkingSpots/GetSearchResult" + "?" + searchstr);
+        }
+
+        function searchUserLocation() {
+            if (supportGeolocation) {
+                if (myposmarker) {
+                    myposmarker.setPosition(new google.maps.LatLng(userlat, userlng));
+                    showAllDistance();
+                    fitBoundsToAll();
+                    $('#getUserLocation').removeClass("disabled");
+                    $("#loadFromMainFrame").removeClass("disabled");
+                }
+            } else {
+                $("#loadFromMainFrame").removeClass("disabled");
+                $('#noGeolocation').modal('show');
+            }
+
+        }
+
+        $(function () {
+            $('#getUserLocation').click(function (e) {
+                userposfound = false;
+                $('#getUserLocation').addClass("disabled");
+                console.log("searching yoru location... ");
+                //$('#getUserLocation').html("<big>Searching ...</big>");
+                $("#loadFromMainFrame").addClass("disabled");
+                useuserpos = true;
+                getLocation(searchUserLocation);
+                //getSearchPartialPage();
+
+                //for firefox. known bug. 
+                //setTimeout(function () {
+                    if (!userposfound && isfirefox) {
+                        console.log("probably chose not now for sharing location. ");
+                        $('#getUserLocation').removeClass("disabled");
+                        $("#loadFromMainFrame").removeClass("disabled");
+                    }
+                //}, 7000);
+            });
+        });
+
+        $(function () {
+            $('#loadFromMainFrame').click(function (e) {
+                $("#loadFromMainFrame").addClass("disabled");
+                //e.preventdefault();
+                getSearchPartialPage()
+            });
+        });
+
+        function getSearchPartialPage() {
+            var searchform = $('#Search');
+            updatehiddenlatlng();
+            var searchstr = searchform.serialize();
+            console.log(searchstr);
+            loadSearchResult(searchstr);
+        };
+    </script>
 
 }
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
 <div class="row">
-    <div class="col-sm-6">
-        <p>map goes here. </p>
-        <div id="yangdebug">debug information</div>
-        <div id="map-canvas"></div>
-    </div>
-    <div class="col-sm-6">
-@{
-    ViewBag.ListDescription = "Skills:";
-    Html.RenderPartial("~/Views/parts/_MapParkingDetails.cshtml", Model);
-}
+    <div class="col-sm-7">
+        <div id="yangdebug"></div>
+
+        <!--<button id="loadFromMainFrame" class="btn btn-info btn-sm pull-left"
+                style="display: block; width: 50%;">
+            <big>Current Location</big>
+        </button>-->
+        <div class="btn-group btn-block">
+            <button id="getUserLocation" class="btn btn-success btn-sm col-sm-6 disabled" >
+                <big>Where Am I</big>
+            </button>
+            <button id="loadFromMainFrame" class="btn btn-primary btn-sm col-sm-6 disabled" >
+                <big>Refresh Search</big>
+            </button>
+            </div>
+
+            @using (Html.BeginForm("Index", "ParkingSpots", FormMethod.Get, new { id = "Search", style = "display: block; width: 100%" }))
+            {
+                <input type="hidden" name="lat" id="lat" value="@ViewBag.lastLat" />
+                <input type="hidden" name="lng" id="lng" value="@ViewBag.lastLng" />
+            }
+
+
+            <div id="map-container">
+                <div class="overlay standard hidden">&nbsp</div>
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                <div id="map-canvas"></div>
+            </div>
+
+        <!-- Modal -->
+        <div id="noGeolocation" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Your browser does not support geolocation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your browser does not support geolocation, therefore we can not get your location. Sorry!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        </div>
+    <div class="col-sm-5">
+        <div id="partialParkingDetails">
+            <script>
+                var userlat;
+                var userlng;
+            </script>
+            @{
+                ViewBag.ListDescription = "ClosestParkingSpot:";
+                //Html.RenderPartial("_SearchResult", Model);
+                Html.RenderAction("GetSearchResult", "ParkingSpots");
+            }
+        </div>
 
     </div>
 </div>
-

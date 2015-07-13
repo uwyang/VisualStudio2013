@@ -202,6 +202,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\googlemap.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -218,7 +219,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\maptest\googlemapasynctest.js" />
     <Content Include="Scripts\maptest\googlemapasynctest2.js" />
-    <Content Include="Scripts\maptest\googlemaptest.js" />
+    <Content Include="Scripts\maptest\loadmarkers.js" />
     <Content Include="Scripts\maptest\mapsearchtest.js" />
     <Content Include="Scripts\maptest\markerobj.js" />
     <Content Include="Scripts\maptest\markertest.js" />
@@ -271,6 +272,9 @@
     <Content Include="Views\ParkingSpots\Index.cshtml" />
     <Content Include="Views\parts\_StringCollection.cshtml" />
     <Content Include="Views\parts\_MapParkingDetails.cshtml" />
+    <Content Include="Views\ParkingSpots\_SearchResult.cshtml" />
+    <Content Include="Views\ParkingSpots\TestPartialReload.cshtml" />
+    <Content Include="Views\ParkingSpots\getData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

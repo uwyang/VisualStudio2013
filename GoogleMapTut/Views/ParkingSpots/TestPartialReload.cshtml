@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "TestParitalReload";
+}
+@section JavaScriptHeader
+{
+    <style type="text/css">
+        #map-canvas {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/googlemap.css">
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/mapsearchtest.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/maptest/loadmarkers.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery-1.10.2.min.js")"></script>
+
+
+}
+
+<h2>TestParitalReload</h2>
+
+<button id="loadFromMainFrame">Load from mainframe</button>
+
+<script>
+
+
+    $(function () {
+        $('#loadFromMainFrame').click(function (e) {
+            e.preventDefault();
+            //updatehiddenlatlng();
+            //var form = $('#Search');
+            //var formstr = form.serialize();
+            //e.preventdefault();
+            //var url = $(this).data(url);
+            console.log("partial load begins here. ");
+            //console.log(formstr);
+
+            $('#partialParkingDetails').load("/ParkingSpots/GetSearchResult");
+        });
+    });
+
+
+</script>
+
+
+
+<div id="partialParkingDetails">
+    @{
+        ViewBag.ListDescription = "Test List ParkingSpot:";
+        Html.RenderAction("GetSearchResult");
+    }
+</div>
+
+
+
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+
+<div id="map-canvas"></div>
+
+

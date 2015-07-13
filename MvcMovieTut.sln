@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMapTut", "GoogleMapTu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTut", "WebApiTut\WebApiTut.csproj", "{D3968480-FF83-4581-900B-6D55E09D8043}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mockParkShare", "mockParkShare\mockParkShare.csproj", "{C36024B4-75E8-4386-A32B-66491DD0B105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D3968480-FF83-4581-900B-6D55E09D8043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3968480-FF83-4581-900B-6D55E09D8043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3968480-FF83-4581-900B-6D55E09D8043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C36024B4-75E8-4386-A32B-66491DD0B105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C36024B4-75E8-4386-A32B-66491DD0B105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C36024B4-75E8-4386-A32B-66491DD0B105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C36024B4-75E8-4386-A32B-66491DD0B105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
