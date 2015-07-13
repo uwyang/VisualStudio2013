@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTut", "WebApiTut\WebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mockParkShare", "mockParkShare\mockParkShare.csproj", "{C36024B4-75E8-4386-A32B-66491DD0B105}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WingtipToys", "WebApplication1\WingtipToys.csproj", "{8E27E0C9-D9EE-463B-BF09-9ED0B360F7C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C36024B4-75E8-4386-A32B-66491DD0B105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C36024B4-75E8-4386-A32B-66491DD0B105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C36024B4-75E8-4386-A32B-66491DD0B105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E27E0C9-D9EE-463B-BF09-9ED0B360F7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E27E0C9-D9EE-463B-BF09-9ED0B360F7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E27E0C9-D9EE-463B-BF09-9ED0B360F7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E27E0C9-D9EE-463B-BF09-9ED0B360F7C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

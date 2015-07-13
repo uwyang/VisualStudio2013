@@ -35,7 +35,8 @@
             console.log("called: getlocation");
             if (navigator.geolocation) {
                 console.log("geolocatoin true");
-                //sucess, error, options
+                //sucess, error, options 
+                //note: firefox has "not now option" which is neither error or sucess. 
                 navigator.geolocation.getCurrentPosition(function (position) {
                     setUserLocation(position);
                     if (callback && typeof (callback) === "function") {
