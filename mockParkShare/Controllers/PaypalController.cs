@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PayPal.Api;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,18 @@ namespace mockParkShare.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult PaymentWithCreditCard()
+        {
+            Item item = new Item();
+            item.name = "Test Donation";
+            item.currency = "CAD";
+            item.price = "5.0";
+            item.quantity = "1";
+            item.sku = "sku";
+            return null;
+
         }
     }
 }
